@@ -20,9 +20,19 @@ Route.get('/', ({ request }) => {
 })
 
 Route.group(() => {
-  Route.get('students', 'StudentController.index')
-  Route.get('students/:id', 'StudentController.show')
-  Route.post('students', 'StudentController.store')
-  Route.put('students/:id', 'StudentController.update')
-  Route.delete('students/:id', 'StudentController.delete')
+  Route.get('students', 'StudentController.index').middleware(['auth:jwt'])
+  Route.get('students/:id', 'StudentController.show').middleware(['auth:jwt'])
+  Route.post('students', 'StudentController.store').middleware(['auth:jwt'])
+  Route.put('students/:id', 'StudentController.update').middleware(['auth:jwt'])
+  Route.delete('students/:id', 'StudentController.delete').middleware(['auth:jwt'])
 }).prefix('api/v1')
+
+// bisa disingkat menjadi seperti ini
+// Route
+//   .resource('students', 'StudentController').middleware(['auth:jwt'])
+//   .apiOnly()
+
+Route.group(() => {
+  Route.post('login', 'AuthController.postLoginJwt').as('loginJwt')
+}).prefix('api/auth')
+

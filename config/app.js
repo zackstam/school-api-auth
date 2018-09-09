@@ -16,7 +16,13 @@ module.exports = {
   */
 
   name: Env.get('APP_NAME', 'AdonisJs'),
+  rajaongkir: {
+    key: '1236546849'
+  },
 
+  layouts: {
+    images: 'uploads/'
+  },
   /*
   |--------------------------------------------------------------------------
   | App Key
@@ -201,6 +207,7 @@ module.exports = {
     | For a different directory, set an absolute path for the filename.
     |
     */
+
     file: {
       driver: 'file',
       name: 'adonis-app',

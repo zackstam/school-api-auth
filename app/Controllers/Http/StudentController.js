@@ -1,10 +1,13 @@
 'use strict'
 
 const Student = use('App/Models/Student')
-class StudentController {
-    async index ({response}) {
-        let students = await Student.all()
+const Config = use('Config')
+const rajaOngkir = Config.get('app.rajaongkir')
 
+class StudentController {
+    async index ({request, response}) {
+
+        let students = await Student.all()
         return response.json(students)
     }
 
@@ -18,7 +21,7 @@ class StudentController {
 
         await student.save()
 
-        return response.status(201).json(student)
+        return response.status(200).json(student)
     }
 
     async update ({params, request, response}) {
